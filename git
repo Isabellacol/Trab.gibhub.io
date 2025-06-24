@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia Loáiza | Marketing Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00E676;
+            --secondary-color: #00C853;
+            --dark-color: #212121;
+            --light-color: #F2F3F5;
+            --text-color: #424242;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            padding: 2.5rem;
+            margin: 1rem 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: radial-gradient(circle, var(--primary-color), transparent 70%);
+            opacity: 0.7;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.8rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.1), transparent 60%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: var(--dark-color);
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 6px 16px rgba(0, 230, 118, 0.15);
+        }
+
+        .about, .articles, .contact {
+            padding: 6rem 10%;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--dark-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: radial-gradient(circle, var(--primary-color), transparent 70%);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+            background: var(--light-color);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .about-image svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .article-card p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        .article-page {
+            padding: 6rem 10%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .article-page h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .article-page p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--dark-color);
+            color: white;
+        }
+
+        .social-links {
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.75rem;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: var(--primary-color);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.1);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .hero, .about, .articles, .contact {
+                padding: 5rem 1.5rem;
+            }
+
+            .article-page {
+                padding: 5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Agencia Loáiza</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Acerca</a></li>
+                <li><a href="#articles">Artículos</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Estrategias Digitales que Transforman Marcas</h1>
+            <p>Especializados en marketing de influenciadores y crecimiento de marcas con enfoque en resultados medibles y estrategias basadas en datos.</p>
+            <a href="#contact" class="btn">Hablemos de tu proyecto</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">Acerca de Mí</h2>
+        <div class="about-content">
+            <div class="about-text card">
+                <h3>Isabella Loáiza - Estudiante de Administración y Marketing </h3>
+                <p>Mi enfoque combina análisis de datos con creatividad, permitiendo crear campañas que no solo son visualmente atractivas, sino también altamente efectivas en términos de ROI.</p>
+                <p>Actualmente colaboro con marcas emergentes y establecidas para desarrollar su presencia digital, siempre con un enfoque en la autenticidad y la construcción de comunidades.</p>
+                <p>Cuando no estoy inmersa en métricas y estrategias, dedico tiempo a explorar las últimas tendencias en tecnología y redes sociales, manteniéndome siempre a la vanguardia del cambiante panorama digital.</p>
+            </div>
+            <div class="about-image card">
+                <div class="tech-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Enfoque Basado en Datos</h3>
+                <p>Todas nuestras estrategias se desarrollan a partir de análisis profundos y métricas comprobadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles" id="articles">
+        <h2 class="section-title">Artículos Recientes</h2>
+        <div class="articles-grid">
+            <div class="card article-card">
+                <div class="tech-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Marketing de Influenciadores</h3>
+                <p>Conectando Marcas con Audiencias Reales. Descubre cómo el marketing de influenciadores se ha consolidado como una estrategia clave en el entorno digital...</p>
+                <a href="#article1" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card article-card">
+                <div class="tech-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3>Claves para una Estrategia Exitosa</h3>
+                <p>Segunda parte de nuestra guía sobre marketing de influenciadores. Aprende los pasos fundamentales para crear campañas efectivas que generen resultados...</p>
+                <a href="#article2" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card article-card">
+                <div class="tech-icon">
+                    <i class="fas fa-trend-up"></i>
+                </div>
+                <h3>Tendencias 2025</h3>
+                <p>El marketing continúa evolucionando. Conoce las tendencias que están marcando el rumbo en 2025 y cómo adaptar tus estrategias...</p>
+                <a href="#article3" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article 1 -->
+    <section id="article1" class="article-page" style="display: none;">
+        <a href="#articles" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Artículos</a>
+        <div class="card">
+            <h2>Marketing de Influenciadores: Conectando Marcas con Audiencias Reales</h2>
+            <p>El marketing de influencers se remonta al siglo 18, donde según datos histórico el Rey del 
+Reino Unido Jorge III fue el primer influenciador quien en la década de 1760 respaldo a la 
+cerámica Wedgwood con su sello real, generando así una excelente reputación y grandes 
+ganancias a esta marca en todo el reino  Así pues, hoy en día en una era digital, ya no son reyes 
+los únicos capaces de influenciar y publicitar marcas, en realidad según datos del 2021, más de 
+12 millones de personas se consideran influencers, siendo esto una gran ventaja para las 
+empresas, debido a que estos individuos carismáticos y lideres en su respectiva comunidad, son 
+realmente un capital humano útil para las estrategias de comunicación en el marketing.   Es así 
+como, el marketing de influencers es una estrategia eficaz para el de posicionamiento de marcas 
+debido a la dinámica entre influenciador y seguidor, donde dado a que existe una relación bien 
+establecida, con una estética particular y un liderazgo marcado, hay un potencial para 
+transformar a una marca desconocida a una popular, la cual posea una identidad y una audiencia 
+leal en poco tiempo.Y tu, le ¿invertirias al marketing con Infuencers? <p>
+    </section>
+
+    <!-- Article 2 -->
+    <section id="article2" class="article-page" style="display: none;">
+        <a href="#articles" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Artículos</a>
+        <div class="card">
+            <h2>Segunda Parte: Claves para una Estrategia de Influenciadores Exitosa</h2>
+            <p>el “influenciador” es un término realmente importante en el marketing, ya que no se ve 
+necesariamente como el influenciador de las redes sociales al que estamos acostumbrados en las R.S, sino 
+que tiene un rol más global. En el marketing el termino influenciador nace de los roles de compra 
+establecido por uno de los padres de esta área, Philipp kottler, el cual establece que los roles de compra han 
+parte de proceso de decisión de compra y la compra final que dependen de una serie de procesos 
+psicológicos y de determinadas características del consumidor.</p>
+            <p>Donde la función del responsable de 
+marketing es comprender qué ocurre en la conciencia del consumidor desde la llegada del estímulo externo 
+de marketing hasta la decisión de compra definitiva. Con esto en mente, para Kotler, hay agentes que son 
+el  iniciador, influenciador, decisor, comprador y usuario que intervienen en estos procesos psicológicos 
+del consumidor, siendo el influenciador “Las personas que influyen en la decisión de compra, muchas veces 
+ayudando a definir especificaciones y proveyendo información para evaluar alternativas”(Kotler, 2014)  No 
+obstante, vemos otros roles importantes, que se asemejan mucho a lo que hoy en día un influenciador de 
+las redes sociales hace o impacta a su público. Por lo menos, tenemos que el iniciador se cataloga como 
+“personas que solicitan que se realice una determinada adquisición” (Kotler, 2014) a la vez que están los 
+decisores, es decir, “que deciden sobre los requisitos del producto y sobre los proveedore.”(Kotler, 2014)</p>
+            <p>De manera que, hoy en día contemplamos que el influenciador tiene tanta relevancia en la vida del usuario 
+que incluso, puede jugar más de un rol en este proceso de compra, pues en ocasiones estos individuos son 
+los que generan la necesidad, influyen y especifican la marca y establecen, donde con quien y como adquirir 
+el producto a sus usurario.</p>
+        </div>
+    </section>
+
+    <!-- Article 3 -->
+    <section id="article3" class="article-page" style="display: none;">
+        <a href="#articles" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Artículos</a>
+        <div class="card">
+            <h2>Tendencias del Marketing en 2025</h2>
+            <p>Los tres instrumentos que han revolucionado la manera de interactuar y crear experiencias 
+ditintas con el consumidor han sido: la tecnología beacon, la realidad virtual y la realidad 
+aumentada.  Hoy nos enfocaremos en la  tecnología beacon , la cual según la revista WOW!, 
+permiten combinar el marketing local y el digital para hacer llegar a los usuarios mensajes 
+personalizados en función de su ubicación.</p>
+            <p>Donde se puede ofrecer una experiencia en 
+tienda única y personalizada a los clientes e incentivar las compras en establecimientos 
+físicos . Tenemos que una de las organizaciones que ha utilizado esta tecnología ha sido en 
+Bélgica, en el museo Ruben House, en Bélgica el cual ha puesto Beacons en sus 
+instalaciones, lo que permite que cada vez que una persona está de pie junto a una pintura, 
+los Beacons transmiten una copia de una radiografía digitalizada de la pintura al 
+smartphone. Así pues, como crees que puedes utilizar en tu negocio esta tecnología.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Trabajemos Juntos</h2>
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <div class="tech-icon">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">¿Lista para llevar tu marca al siguiente nivel?</h3>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">Contáctame para discutir cómo podemos crear una estrategia de marketing efectiva para tu negocio.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Nombre">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Asunto">
+                <textarea placeholder="Cuéntame sobre tu proyecto" rows="4"></textarea>
+                <button type="submit" class="btn" style="width: 100%;">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="color: white; margin-bottom: 1rem;">Agencia Loáiza</div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p style="margin-top: 2rem; color: #aaa; font-size: 0.9rem;">&copy; 2025 Agencia Loáiza. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Simple navigation for articles
+        document.querySelectorAll('.read-more').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                // Hide all article pages
+                document.querySelectorAll('.article-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // Show the selected article
+                document.querySelector(targetId).style.display = 'block';
+                
+                // Scroll to the article
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Back button functionality
+        document.querySelectorAll('.back-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide all article pages
+                document.querySelectorAll('.article-page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // Scroll back to articles section
+                document.querySelector('#articles').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
